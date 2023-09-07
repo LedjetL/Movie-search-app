@@ -1,24 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import MovieDetails from './pages/MovieDetails';
+import { createContext, useState } from 'react';
+import FavoriteCollections from './pages/FavoriteCollections';
+export const UserContext = createContext(null);
+  
 function App() {
+  const [favoriteList, setFavoriteList] = useState([])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <UserContext.Provider value={{favoriteList, setFavoriteList}}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/movieDetails/:imdbID" element={<MovieDetails />} />
+          <Route path="/favoriteCollection" element={<FavoriteCollections />} />
+          <Route path="*" element={<p>Error Wrong Page</p>} />
+        </Routes>
+      </UserContext.Provider>
+    </BrowserRouter>
   );
 }
 
