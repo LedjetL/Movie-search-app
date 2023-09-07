@@ -25,7 +25,7 @@ Install the project dependencies using npm:
     npm install
 
 Create a .env file in the project root and add your OMDB API key:
-    REACT_APP_API_KEY=your-api-key
+    your-api-key
 
 How to Run the Application
 In order to run the app locally follow these steps:
